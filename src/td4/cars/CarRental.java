@@ -1,6 +1,10 @@
 package td4.cars;
 
 import java.time.LocalDate;
+import java.util.Comparator;
+
+import td4.core.PayingItem;
+import td4.flights.Flight;
 
 /**
  * 
@@ -14,7 +18,7 @@ import java.time.LocalDate;
  * @author blay
  *
  */
-public class CarRental {
+public class CarRental implements PayingItem {
 
 	private Car car;
 	private double dayPrice;

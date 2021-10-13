@@ -60,5 +60,16 @@ public class FlightServiceTest {
 		assertEquals(100,flights.get(1).getPrice(),0.01);
 		assertEquals(150,flights.get(2).getPrice(),0.01);
 	}
+	
+	@Test
+	public void testGetLessPriced() {
+		ArrayList<Flight> list = new ArrayList<>();
+		list.add(new Flight(100, dateToTest, LocalTime.of(7, 45),NICE, PARIS));
+		list.add(new Flight(20, dateToTest, LocalTime.of(9, 30), NICE, PARIS));
+		list.add(new Flight(150, dateToTest, LocalTime.of(18, 30), PARIS, NICE));
+		service = new FlightService(list);
+		assertEquals(20.0, service.getLessPriced().getPrice(), 0.0001);
+		
+	}
 
 }

@@ -7,19 +7,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import td4.core.Service4PI;
+
 /**
  * This class allows the management of a set of flights
  * 
  * @author Mireille Blay-Fornarino
+ * @param <T>
  *
  * 
  */
 
-public class FlightService {
+public class FlightService extends Service4PI<Flight> {
 
 	private List<Flight> flights = new ArrayList<>();
 
 	public FlightService(List<Flight> flights) {
+		super(flights);
 		this.flights = flights;
 	}
 
@@ -53,6 +57,11 @@ public class FlightService {
 	public List<Flight> sortedByPrice() {
 		flights.sort(Comparator.comparing(Flight::getPrice));
 		return new ArrayList<>(flights);
+	}
+	
+	public Flight getLessPriced() {
+		this.flights.sort(Comparator.comparing(Flight::getPrice));
+		return flights.get(0);	
 	}
 
 }

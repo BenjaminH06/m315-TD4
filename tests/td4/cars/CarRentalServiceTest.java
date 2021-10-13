@@ -98,6 +98,14 @@ public class CarRentalServiceTest {
 		possibleCars = service.getAvailableCars(LocalDate.of(2020,9,13), 2);
 		assertEquals(3, possibleCars.size());
 	}
+	
+	@Test
+	public void testSortedByPrice() throws NotPossibleCarRentalException {
+		service.sortedByPrice();
+		assertEquals(service.getAvailableCars(currentDate, 0).get(0).getNumberPlate(), "1111 AB 06");
+		assertEquals(service.getAvailableCars(currentDate, 0).get(1).getNumberPlate(), "1111 AB 83");
+		assertEquals(service.getAvailableCars(currentDate, 0).get(2).getNumberPlate(), "1111 AB 75");
+	}
 
 
 
