@@ -10,6 +10,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import td4.cars.Car;
+import td4.cars.CarRentalService;
 import td4.util.NotPossibleCarRentalException;
 
 
@@ -103,8 +105,8 @@ public class CarRentalServiceTest {
 	public void testSortedByPrice() throws NotPossibleCarRentalException {
 		service.sortedByPrice();
 		assertEquals(service.getAvailableCars(currentDate, 0).get(0).getNumberPlate(), "1111 AB 06");
-		assertEquals(service.getAvailableCars(currentDate, 0).get(1).getNumberPlate(), "1111 AB 83");
-		assertEquals(service.getAvailableCars(currentDate, 0).get(2).getNumberPlate(), "1111 AB 75");
+		assertEquals(service.getAvailableCars(currentDate, 0).get(1).getNumberPlate(), "1111 AB 75");
+		assertEquals(service.getAvailableCars(currentDate, 0).get(2).getNumberPlate(), "1111 AB 83");
 	}
 
 

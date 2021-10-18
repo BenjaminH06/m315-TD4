@@ -1,4 +1,5 @@
-/* package td4;
+package td4;
+
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -11,11 +12,12 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import jdk.jfr.Description;
+import td4.trip.Description;
 import td4.cars.Car;
 import td4.cars.CarRentalService;
 import td4.flights.Flight;
 import td4.flights.FlightService;
+import td4.trip.Trip;
 import td4.util.TravelOrganizer;
 
 
@@ -31,6 +33,9 @@ class TravelOrganizerTest {
 
 	Flight niceParis;
 	Flight niceParisNow;
+	
+	Description description;
+	
 	@BeforeEach
 	void setUp() {
 		Car myCar0 = new Car("1111 AB 06", 50);
@@ -61,7 +66,7 @@ class TravelOrganizerTest {
 
 		airFrance = new FlightService(list);
 
-		Descript description = new Description(LocalDate.of(2017, 12, 24), "Nice", "Paris", 3);
+		Description description = new Description(LocalDate.of(2017, 12, 24), "Nice", "Paris", 3);
 
 		travelOrganizer = new TravelOrganizer();
 	}
@@ -129,4 +134,4 @@ class TravelOrganizerTest {
 	
 	
 	
-} */
+}

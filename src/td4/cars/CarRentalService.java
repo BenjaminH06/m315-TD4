@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import td4.core.Service4PI;
 import td4.flights.Flight;
 import td4.util.DateTools;
 import td4.util.NotPossibleCarRentalException;
@@ -19,13 +20,13 @@ import td4.util.NotPossibleCarRentalException;
  *
  * 
  */
-public class CarRentalService {
+public class CarRentalService extends Service4PI<CarRental> {
 
 	//Set of cars for rent
 	private List<Car> cars;
 	
 	//All registered car rentals
-	private List<CarRental> carRentals = new ArrayList<>();
+	private static List<CarRental> carRentals = new ArrayList<>();
 
 
 
@@ -36,7 +37,7 @@ public class CarRentalService {
 
 	//To create a car rental service,  you need to have cars.
 	public CarRentalService(List<Car> cars) {
-		super();
+		super(carRentals);
 		this.cars = cars;
 	}
 
