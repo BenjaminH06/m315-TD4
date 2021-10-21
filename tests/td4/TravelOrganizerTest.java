@@ -1,6 +1,5 @@
 package td4;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -12,11 +11,11 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import td4.trip.Description;
 import td4.cars.Car;
 import td4.cars.CarRentalService;
 import td4.flights.Flight;
 import td4.flights.FlightService;
+import td4.trip.Description;
 import td4.trip.Trip;
 import td4.util.TravelOrganizer;
 
@@ -29,13 +28,11 @@ class TravelOrganizerTest {
 	FlightService easyJet;
 	FlightService airFrance;
 	
+	Description description;
 	TravelOrganizer travelOrganizer;
 
 	Flight niceParis;
 	Flight niceParisNow;
-	
-	Description description;
-	
 	@BeforeEach
 	void setUp() {
 		Car myCar0 = new Car("1111 AB 06", 50);
@@ -66,7 +63,7 @@ class TravelOrganizerTest {
 
 		airFrance = new FlightService(list);
 
-		Description description = new Description(LocalDate.of(2017, 12, 24), "Nice", "Paris", 3);
+		description = new Description(LocalDate.of(2017, 12, 24), "Nice", "Paris", 3);
 
 		travelOrganizer = new TravelOrganizer();
 	}
@@ -85,7 +82,7 @@ class TravelOrganizerTest {
 		Trip trip = travelOrganizer.createATrip(description);
 		//System.out.println(trip.getProducts());
 		assertTrue(trip != null);
-		assertEquals(1, trip.getProducts().size());
+		assertEquals(2, trip.getProducts().size());
 		assertEquals(niceParis, trip.getProducts().get(0));
 		description = new Description(LocalDate.now(), "Nice", "Paris", 3);
 		trip = travelOrganizer.createATrip(description);
@@ -99,9 +96,10 @@ class TravelOrganizerTest {
 		initcars();
 		initFlights();
 		Trip trip = travelOrganizer.createATrip(description);
+		
 		assertTrue(trip != null);
 		//System.out.println(trip.getProducts());
-		assertEquals(3, trip.getProducts().size());
+		assertEquals(4, trip.getProducts().size());
 	}
 
 	private void initcars() {
@@ -123,7 +121,7 @@ class TravelOrganizerTest {
 		Trip trip = travelOrganizer.createATrip(description);
 		assertTrue(trip != null);
 		//System.out.println(trip.getProducts());
-		assertEquals(3, trip.getProducts().size());
+		assertEquals(4, trip.getProducts().size());
 	}
 
 	@Override

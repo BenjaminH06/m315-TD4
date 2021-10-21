@@ -1,6 +1,6 @@
 package td4.cars;
 
-
+import td4.core.Product;
 
 /**
  * This class defines the notion of a car to be rented by associating it with a price per day.
@@ -10,7 +10,7 @@ package td4.cars;
  * @version 1.0
  */
 
-public class Car {
+public class Car implements Product {
 
 	private String numberPlate;
 	private double dayPrice;
@@ -38,6 +38,12 @@ public class Car {
 	public String toString() {
 		return "Car [numberPlate=" + numberPlate + // ", rentals=" + rentals + 
 				", dayPrice=" + dayPrice + "]";
+	}
+
+	@Override
+	public double getPrice() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

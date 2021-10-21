@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import td4.core.Product;
+import td4.core.Service;
 import td4.core.Service4PI;
+import td4.trip.Description;
 
 /**
  * This class allows the management of a set of flights
@@ -18,13 +21,13 @@ import td4.core.Service4PI;
  * 
  */
 
-public class FlightService extends Service4PI<Flight> {
+public class FlightService extends Service4PI<Flight> implements Service {
 
-	private List<Flight> flights = new ArrayList<>();
+	private static List<Flight> flights = new ArrayList<>();
 
 	public FlightService(List<Flight> flights) {
 		super(flights);
-		this.flights = flights;
+		FlightService.flights = flights;
 	}
 
 	/**
@@ -59,9 +62,24 @@ public class FlightService extends Service4PI<Flight> {
 		return new ArrayList<>(flights);
 	}
 	
+	public void sortPriced() {
+		FlightService.flights.sort(Comparator.comparing(Flight::getPrice));
+	}
+	
 	public Flight getLessPriced() {
-		this.flights.sort(Comparator.comparing(Flight::getPrice));
-		return flights.get(0);	
+		FlightService.flights.sort(Comparator.comparing(Flight::getPrice));
+		return flights.get(0);
+	}
+
+	@Override
+	public Product find(Description description) {
+		Product bestPrice = null;
+		this.sortPriced();
+		List<Flight> f = this.getFlights(description.getDepartDate(), description.getDepartPlace(), description.getArrivalPlace());
+		if(f.size() > 0) {
+			bestPrice = f.get(0);
+		}
+		return bestPrice;
 	}
 
 }

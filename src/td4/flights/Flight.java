@@ -15,7 +15,7 @@ import td4.core.*;
  *
  *
  */
-public class Flight implements PayingItem {
+public class Flight implements Product {
 
 	private static final   int NOT_ASSIGNED = -1;
 	private static final   String DEFAULT_DESTINATION= "Paris";

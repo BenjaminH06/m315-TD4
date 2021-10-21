@@ -5,8 +5,6 @@ import td4.core.Product;
 
 public interface Service {
 
-	public static Product find(Description description) {
-		return null;
-	}
+	public Product find(Description description);
 	
 }

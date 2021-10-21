@@ -3,8 +3,10 @@ package td4.cars;
 import java.time.LocalDate;
 import java.util.Comparator;
 
-import td4.core.PayingItem;
+import td4.core.Product;
+import td4.core.Service;
 import td4.flights.Flight;
+import td4.trip.Description;
 
 /**
  * 
@@ -18,7 +20,7 @@ import td4.flights.Flight;
  * @author blay
  *
  */
-public class CarRental implements PayingItem {
+public class CarRental implements Product {
 
 	private Car car;
 	private double dayPrice;
@@ -95,6 +97,7 @@ public class CarRental implements PayingItem {
 		}
 		return false;
 	}
+
 	
 
 }

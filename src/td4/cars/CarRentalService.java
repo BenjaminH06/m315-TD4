@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import td4.core.Product;
+import td4.core.Service;
 import td4.core.Service4PI;
 import td4.flights.Flight;
+import td4.trip.Description;
 import td4.util.DateTools;
 import td4.util.NotPossibleCarRentalException;
 
@@ -20,7 +23,7 @@ import td4.util.NotPossibleCarRentalException;
  *
  * 
  */
-public class CarRentalService extends Service4PI<CarRental> {
+public class CarRentalService extends Service4PI<CarRental> implements Service{
 
 	//Set of cars for rent
 	private List<Car> cars;
@@ -94,6 +97,15 @@ public class CarRentalService extends Service4PI<CarRental> {
 	public List<CarRental> sortedByPrice() {
 		this.carRentals.sort(Comparator.comparing(CarRental::getPrice));
 		return this.carRentals;
+	}
+
+
+	@Override
+	public Product find(Description description) {
+		this.sortedByPrice();
+		List<Car> availableC = this.getAvailableCars(description.getDepartDate(), description.getDuration());
+		Product bestPrice = availableC.get(0);
+		return bestPrice;
 	}
 
 	
