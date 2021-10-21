@@ -13,8 +13,11 @@ import org.junit.jupiter.api.Test;
 
 import td4.cars.Car;
 import td4.cars.CarRentalService;
+import td4.core.Service;
 import td4.flights.Flight;
 import td4.flights.FlightService;
+import td4.motel.MotelService;
+import td4.motel.Room;
 import td4.trip.Description;
 import td4.trip.Trip;
 import td4.util.TravelOrganizer;
@@ -111,7 +114,13 @@ class TravelOrganizerTest {
 		travelOrganizer.addService(easyJet);
 		travelOrganizer.addService(airFrance);
 	}
-
+	private void initHotels() {
+		Room myRoom0 = new Room(50, "Ibis", "Nice", 1);
+		Room myRoom1 = new Room(60, "Negressco", "Nice", 2);
+		Room myRoom2 = new Room(40, "BNB", "Toulouse", 3);
+		Service service = new MotelService( new ArrayList<>(Arrays.asList(myRoom0, myRoom1, myRoom2) )  )  ;
+		travelOrganizer.addService(service);
+	}
 	
 	@Test
 	void testcreateATripwithFlightAndCarsReduced() {
@@ -122,6 +131,18 @@ class TravelOrganizerTest {
 		assertTrue(trip != null);
 		//System.out.println(trip.getProducts());
 		assertEquals(4, trip.getProducts().size());
+	}
+	
+	@Test
+	void testcreateATripwithFlightAndCarsAndHotel() {
+		initHotels();
+		initcars();
+		initFlights();
+		Trip trip = travelOrganizer.createATrip(description);
+		
+		assertTrue(trip != null);
+		//System.out.println(trip.getProducts());
+		assertEquals(5, trip.getProducts().size());
 	}
 
 	@Override
